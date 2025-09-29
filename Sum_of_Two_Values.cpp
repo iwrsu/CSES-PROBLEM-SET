@@ -78,28 +78,47 @@ ll binpow(ll a, ll b) {
 
 void solve()
 {
-    ll n;
-    cin>>n;
-    
+    ll n,x;
+    cin>>n>>x;
+
     vector<pair<int,int>> v(n);
-    rep(i,0,n) cin>>v[i].ff>>v[i].ss;
-
-    sort(all(v), [](pair<int,int> &a, pair<int,int> &b){
-        return a.ss<b.ss;
-    });
-
-    int cnt=0;
-    int last_end=0;
-
-    for(auto &i: v){
-        int start = i.ff;
-        int end = i.ss;
-        if(start>=last_end){
-            ++cnt;
-            last_end=end;
-        }
+    for(int i=0;i<n;i++){
+        cin>>v[i].ff;
+        v[i].ss=i+1;
     }
-    cout<<cnt;
+
+    sort(all(v));
+
+    // int end=0;
+    // rep(i,0,n) {if(v[i]>=x){
+    //     end=i-1;
+    //     break;
+    // }}
+    // if(!end) end=n;
+    // // cout<<end;
+    // int start=0;
+    // rep(i,0,end){
+    //     if(v[start]+v[i]<x) ++start;
+    //     else if(v[start]+v[end]>x) {
+    //         start=0;end--;
+    //     }
+    //     else{
+    //         cout<<start<<" "<<end;
+    //     }
+    // }
+
+    int i=0,j=n-1;
+    while(i<j){
+        if(v[i].ff+v[j].ff==x){
+            cout<<v[j].ss<<" "<<v[i].ss;
+            return;
+        }
+        if(v[i].ff+v[j].ff>x){
+        --j;
+        }
+        else ++i;
+    }
+    cout<<"IMPOSSIBLE";
 }
 
 int main()

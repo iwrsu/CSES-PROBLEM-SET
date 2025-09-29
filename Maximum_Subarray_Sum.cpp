@@ -80,26 +80,17 @@ void solve()
 {
     ll n;
     cin>>n;
-    
-    vector<pair<int,int>> v(n);
-    rep(i,0,n) cin>>v[i].ff>>v[i].ss;
 
-    sort(all(v), [](pair<int,int> &a, pair<int,int> &b){
-        return a.ss<b.ss;
-    });
-
-    int cnt=0;
-    int last_end=0;
-
-    for(auto &i: v){
-        int start = i.ff;
-        int end = i.ss;
-        if(start>=last_end){
-            ++cnt;
-            last_end=end;
-        }
+    ll ans = -INF;
+    ll sum=0;
+    rep(i,0,n){
+        ll x;
+        cin>>x;
+        sum+=x;
+        ans=max(ans,sum);
+        if(sum<0) sum=0;
     }
-    cout<<cnt;
+    cout<<ans;
 }
 
 int main()
