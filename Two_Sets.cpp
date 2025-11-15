@@ -27,8 +27,8 @@ using namespace std;
 #define EPSILON 1e-9
 #define PI 3.14159265358979323846
 #define INF 0x3f3f3f3f
-#define py cout<<"Yes"
-#define pn cout<<"No"
+#define py cout<<"YES"
+#define pn cout<<"NO"
 #define SIZE 1000001
 
 // Bit manipulation macros
@@ -41,13 +41,9 @@ using namespace std;
 #define MSB(x) (1 << (31 - __builtin_clz(x))) // most significant set bit
 #define ISPOW2(x) ((x) && !((x) & ((x)-1))) // check if power of 2
 
-using ll = long long;
 using pii = pair<int,int>;
-using pll = pair<ll,ll>;
 using vi = vector<int>;
-using vl = vector<ll>;
 using vpi = vector<pii>;
-using vpl = vector<pll>;
 
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
@@ -66,8 +62,8 @@ istream& operator>>(istream &in, vector<T> &v) { for (auto &x : v) in >> x; retu
 template<typename T>
 ostream& operator<<(ostream &out, const vector<T> &v) { for (auto &x : v) out << x << " "; return out; }
 
-ll binpow(ll a, ll b) {
-    ll res = 1;
+int binpow(int a, int b) {
+    int res = 1;
     while (b > 0) {
         if (b & 1)
             res = res * a;
@@ -79,17 +75,31 @@ ll binpow(ll a, ll b) {
 
 void solve()
 {
-    ll x,y;
-    cin>>x>>y;
-    if(x<=y)
+    int n;
+    cin>>n;
+    int sum = (n*(n+1))/2;
+    if(sum%2){
+        pn;
+        return;
+    }
+    int target=sum/2;
+    vi a,b;
+    for(int i=n;i>=1;--i)
     {
-        if(y%2) cout<<(y*y-(x-1));
-        else cout<<((y-1)*(y-1)+x);
+        if(i<=target)
+        {
+            a.pb(i);
+            target-=i;
+        }
+        else b.pb(i);
     }
-    else{
-        if(x%2) cout<<((x-1)*(x-1)+y);
-        else cout<<((x*x)-y+1);
-    }
+    py;
+    cout<<"\n";
+    cout<<a.size()<<"\n";
+    cout<<a;
+    cout<<"\n";
+    cout<<b.size()<<"\n";
+    cout<<b;
 }
 
 int32_t main()
@@ -98,6 +108,6 @@ int32_t main()
    cin.tie(0);
    cout.tie(0);
    int t=1;
-   cin>>t;
+//    cin>>t;
    while(t--){ solve(); cout<<"\n"; }
 }
