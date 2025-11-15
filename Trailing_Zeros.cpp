@@ -75,7 +75,15 @@ int binpow(int a, int b) {
 
 void solve()
 {
-    
+    int n;
+    cin>>n;
+    int p=5,cnt=0;
+    while(p<=n)
+    {
+        cnt+=n/p;
+        p*=5;
+    }
+    cout<<cnt;
 }
 
 int32_t main()
@@ -84,6 +92,6 @@ int32_t main()
    cin.tie(0);
    cout.tie(0);
    int t=1;
-   cin>>t;
+//    cin>>t;
    while(t--){ solve(); cout<<"\n"; }
 }
